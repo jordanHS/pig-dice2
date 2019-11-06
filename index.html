@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="js/jquery-3.4.1.js"></script>
+    <script src="js/scripts.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Pig Dice</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Pig Dice</h1>
+      <div class="col-md-6">
+        <form id="pigDice">
+          <div class="form-group">
+            <label for="playerOne">Player One:</label>
+            <input type="text" id="playerOne">
+            <label for="playerTwo">Player Two:</label>
+            <input type="text" id="playerTwo">
+            <button type="submit" id="names" class="btn btn-success">Submit</button>
+          </div>
+          <button type="button" id="roll" class="btn btn-success">Roll</button>
+          <button type="button" id="hold" class="btn btn-warning">Hold</button>
+        </form>
+        <div class="results">
+          <p>Rolled a <span id="rolledResult"></span></p>
+          <p><span id="currentPlayer">Current Score:</span><span id="currentScore"></span></p>
+          <p><span id="scoreName1">Player 1</span>'s score:<span id="playerOneResults"></span></p>
+          <p><span id="scoreName2">Player 2</span>'s score:<span id="playerTwoResults"></span></p>
+        </div>
+        <button type="button" id="reset" class="btn btn-primary hidden">Reset</button>
+      </div>
+    </div>
+  </body>
+</html>
