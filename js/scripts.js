@@ -7,6 +7,7 @@ var tempScore = 0;
 var player = true;
 var playerOneScore = 0;
 var playerTwoScore = 0;
+var doubles = false;
 // var compScore = 0;
 
 PigDice.prototype.rollDie = function(min, max) {
@@ -15,24 +16,39 @@ PigDice.prototype.rollDie = function(min, max) {
 
 PigDice.prototype.roll = function(){
   var dieOne = Math.ceil(dice.rollDie(1, 7));
-  var dietwo = Math.ceil(dice.rollDie(1, 7));
-  console.log(rolledNum);
-  if (dieOne === 1 || dieTwo === 1) {
+  var dieTwo = Math.ceil(dice.rollDie(1, 7));
+  console.log(dieOne, dieTwo);
+  if (doubles) {
+    $("button#hold").prop("disabled", false);
+    doubles = false;
+  }
+  if (dieOne === 1 && dieTwo === 1) {
+    tempScore = 0;
+    if (player) {
+      playerOneScore = 0;
+      $("#playerOneResults").html(" 0");
+    } else if (!player) {
+      playerTwoScore = 0;
+      $("#playerTwoResults").html(" 0");
+    }
+      player = !player;
+      $("#rolledResult").html("snake eyes and lost all your points!");
+  } else if (dieOne === 1 || dieTwo === 1) {
     tempScore = 0;
     player = !player;
     $("#rolledResult").html("1!");
-  }
-    else if (dieOne === 1 && dieTwo === 1) {
-      tempScore = 0;
-      player = !player;
-      $("#rolledResult").html("1!");
+  } else if (dieOne === dieTwo) {
+    tempScore += (dieOne + dieTwo);
+    $("currentScore").html();
+    $("#rolledResult").html("doubles, " + dieOne + " and " + dieTwo + " Roll again!");
+    $("button#hold").prop("disabled", true);
+    doubles = true;
   } else {
-    tempScore += rolledNum;
-    $("#rolledResult").html(rolledNum.toString());
+    tempScore += (dieOne + dieTwo);
+    $("#rolledResult").html((dieOne.toString()) + " and " + dieTwo.toString())
   }
   return tempScore;
 }
-
 PigDice.prototype.hold = function(){
   if (player) {
     playerOneScore += tempScore;
