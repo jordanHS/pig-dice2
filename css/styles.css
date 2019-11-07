@@ -1,3 +1,23 @@
 .hidden {
   display: none;
 }
+
+#onePlayer {
+  display: none;
+}
+
+#twoPlayer {
+  display: none;
+}
+
+#difficulty {
+  display: none;
+}
+
+#resultsBlock {
+  display: none;
+}
+
+#playButtons {
+  display: none;
+}

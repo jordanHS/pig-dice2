@@ -12,17 +12,32 @@
       <h1>Pig Dice</h1>
       <div class="col-md-6">
         <form id="pigDice">
-          <div class="form-group">
+          <div class="form-group" id="gameMode">
+            <button type="button" class="btn btn-dark" id="2player" name="button">2 Player</button>
+            <button type="button" class="btn btn-dark" id="computer" name="button">CPU</button>
+          </div>
+          <div class="form-group" id="difficulty">
+            <button type="button" class="btn btn-dark" id="easy" name="button">Easy</button>
+            <button type="button" class="btn btn-dark" id="hard" name="button">Hard</button>
+          </div>
+          <div class="form-group" id="onePlayer">
+            <label for="playerName">Your Name:</label>
+            <input type="text" id="playerName"><br>
+            <button type="button" class="btn btn-dark" id="onePlayerName">Submit</button>
+          </div>
+          <div class="form-group" id="twoPlayer">
             <label for="playerOne">Player One:</label>
             <input type="text" id="playerOne">
             <label for="playerTwo">Player Two:</label>
             <input type="text" id="playerTwo">
             <button type="submit" id="names" class="btn btn-success">Submit</button>
           </div>
-          <button type="button" id="roll" class="btn btn-success">Roll</button>
-          <button type="button" id="hold" class="btn btn-warning">Hold</button>
+          <div class="form-group" id="playButtons">
+            <button type="button" id="roll" class="btn btn-success">Roll</button>
+            <button type="button" id="hold" class="btn btn-warning">Hold</button>
+          </div>
         </form>
-        <div class="results">
+        <div class="results" id="resultsBlock">
           <p>Rolled  <span id="rolledResult"></span></p>
           <p><span id="currentPlayer">Current Score:</span><span id="currentScore"></span></p>
           <p><span id="scoreName1">Player 1</span>'s score:<span id="playerOneResults"></span></p>

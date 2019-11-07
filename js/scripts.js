@@ -1,6 +1,12 @@
 function PigDice(name){
   this.name = name;
 }
+
+function NPC(diff){
+  //easy = true, hard = false
+  this.difficulty = diff;
+}
+
 var dieOne = 0;
 var dieTwo = 0;
 var tempScore = 0;
@@ -8,10 +14,14 @@ var player = true;
 var playerOneScore = 0;
 var playerTwoScore = 0;
 var doubles = false;
-// var compScore = 0;
+var compScore = 0;
 
 PigDice.prototype.rollDie = function(min, max) {
   return Math.random() * (max - min);
+}
+
+PigDice.prototype.npcRoll = function() {
+
 }
 
 PigDice.prototype.roll = function(){
@@ -49,6 +59,7 @@ PigDice.prototype.roll = function(){
   }
   return tempScore;
 }
+
 PigDice.prototype.hold = function(){
   if (player) {
     playerOneScore += tempScore;
@@ -76,10 +87,37 @@ PigDice.prototype.hold = function(){
 }
 
 var dice = new PigDice("player");
+var npc = new NPC("");
 var name1 = "";
 var name2 = "";
 
 $(document).ready(function(event){
+
+  $("button#2player").click(function(){
+    $("#twoPlayer").show();
+    $("#gameMode").hide();
+  });
+
+  $("button#computer").click(function(){
+    $("#difficulty").show();
+    $("#gameMode").hide();
+  });
+
+  $("#easy, #hard").click(function(){
+    npc.difficulty = true;
+    $("#onePlayer").show();
+    $("#difficulty").hide();
+  });
+
+  //need to differentiate between two players and one vs computer.
+  //add variable to flag cpu as opponent
+  //use cpu flag to block button on cpu's return and name the second player.
+  //have the computers moves displayed below, ie cpu rolled a 5, cpu rolled a 4, cpu held.
+
+  $("#onePlayerName").click(function(){
+    dice.name = $("#onePlayer").val();
+    $("#resultsBlock").show();
+  });
 
   $("button#names").click(function(event){
     event.preventDefault();
@@ -87,6 +125,9 @@ $(document).ready(function(event){
     name2 = $("#playerTwo").val();
     $("#scoreName1").html(name1);
     $("#scoreName2").html(name2);
+    $("div#playButtons").show();
+    $("#resultsBlock").show();
+    $("#twoPlayer").hide();
   });
 
   $("button#roll").click(function(event){
